@@ -1,0 +1,1209 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+  branch: master
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - &ref_0
+        label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - name: booking
+    label: Bookings
+    folder: cms/booking
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_booking-details
+        label: Booking Details
+        widget: text
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: booking
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[booking].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: social_media
+    label: Social Media
+    folder: cms/social-media
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_icon
+        label: Icon
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_link
+        label: Link
+        widget: string
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: social-media
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[social-media].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: profile
+    label: Profiles
+    folder: cms/profile
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_artist-name
+        label: Artist Name
+        widget: string
+        required: false
+      - hint: ''
+        name: f_profile-image
+        label: Profile Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_artist-bio
+        label: Artist Bio
+        widget: text
+        required: false
+      - hint: ''
+        name: f_current-year
+        label: Current Year
+        widget: number
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: profile
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[profile].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: music
+    label: Music
+    folder: cms/music
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: 600 X 600
+        name: f_album-artwork
+        label: Artwork
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_release-date
+        label: Release Date
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_song-album
+        label: Single / Album
+        widget: string
+        required: false
+      - hint: ''
+        name: f_featured
+        label: New Release
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_single
+        label: Single
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_album
+        label: Album
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_you-may-also-like
+        label: You May Also Like
+        widget: relation
+        required: false
+        collection: music
+        value_field: cms/music/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: true
+      - hint: music.apple.com/us/single/"single-name/"single ID"
+        name: f_embed
+        label: embed
+        widget: string
+        required: false
+      - hint: ''
+        name: f_spotify
+        label: Spotify
+        widget: string
+        required: false
+      - hint: ''
+        name: f_other
+        label: Other
+        widget: string
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: music
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[music].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: video
+    label: Videos
+    folder: cms/video
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: Thumbnail Ratio 9:16
+        name: f_thumbnail
+        label: Thumbnail
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_video-embed-code
+        label: Video Embed Code
+        widget: string
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: video
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[video].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: photos
+    label: Photos
+    folder: cms/photos
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_image
+        label: Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_slider
+        label: Slide 1
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_slide-2
+        label: Slide 2
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_slide-3
+        label: Slide 3
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_slide-4
+        label: Slide 4
+        widget: boolean
+        required: false
+        default: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: photos
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[photos].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: shop
+    label: Shops
+    folder: cms/shop
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Item Description
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_item-image
+        label: Item Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: $0.00
+        name: f_price
+        label: Price
+        widget: string
+        required: false
+      - hint: ''
+        name: f_direct-link
+        label: Direct Link
+        widget: string
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: shop
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[shop].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: event
+    label: Events
+    folder: cms/event
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_date
+        label: Date
+        widget: datetime
+        required: false
+      - hint: Venue / Live Stream
+        name: f_location-name
+        label: Location Name
+        widget: string
+        required: false
+      - hint: ''
+        name: f_address
+        label: Address
+        widget: string
+        required: false
+      - hint: 7:30 PM
+        name: f_time
+        label: Time
+        widget: string
+        required: false
+      - hint: ''
+        name: f_call-to-action
+        label: Call To Action Link
+        widget: string
+        required: false
+      - hint: ''
+        name: f_flyer-color
+        label: Flyer Color
+        widget: color
+        required: false
+        enableAlpha: true
+        allowInput: true
+      - hint: ''
+        name: f_event-details
+        label: Event Details
+        widget: text
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: event
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[event].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: update
+    label: Updates
+    folder: cms/update
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Update Details
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_publish-date
+        label: Publish Date
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_featured
+        label: Featured
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_update-image
+        label: Update Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: update
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[update].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: 'Original text: No items found., key: 3d503d2b'
+            label: Text
+            name: 3d503d2b
+            widget: string
+          - hint: 'Original text: MUSIC & VIDEOS, key: 2be6604d'
+            label: Text
+            name: 2be6604d
+            widget: string
+          - hint: 'Original text: EVENTS, key: 7a9ad519'
+            label: Text
+            name: 7a9ad519
+            widget: string
+          - hint: 'Original text: SHOP, key: 26d2f6'
+            label: Text
+            name: 26d2f6
+            widget: string
+          - hint: 'Original text: NEWS, key: 2482d3'
+            label: Text
+            name: 2482d3
+            widget: string
+          - hint: 'Original text: PHOTOS, key: -7360837f'
+            label: Text
+            name: '-7360837f'
+            widget: string
+          - hint: 'Original text: Close X, key: -692123f0'
+            label: Text
+            name: '-692123f0'
+            widget: string
+          - hint: 'Original text: Booking Details, key: 28e77d3b'
+            label: Text
+            name: 28e77d3b
+            widget: string
+          - hint: 'Original text: Name, key: 24eeab'
+            label: Text
+            name: 24eeab
+            widget: string
+          - hint: 'Original text: Email, key: 3ff5b7c'
+            label: Text
+            name: 3ff5b7c
+            widget: string
+          - hint: 'Original text: Phone, key: 4984d4e'
+            label: Text
+            name: 4984d4e
+            widget: string
+          - hint: 'Original text: Service Request, key: -553fe01c'
+            label: Text
+            name: '-553fe01c'
+            widget: string
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+          - hint: 'Original text: X, key: 58'
+            label: Text
+            name: '58'
+            widget: string
+          - hint: 'Original text: The , key: 27c1ef'
+            label: Text
+            name: 27c1ef
+            widget: string
+          - hint: 'Original text: Music App Coming Soon, key: c573b80'
+            label: Text
+            name: c573b80
+            widget: string
+          - hint: >-
+              Original text: Submit your email below and be the first to know
+              once the app is available for download in the app store. The app
+              will be available on both Android and IOS devices. , key:
+              -64b43b90
+            label: Text
+            name: '-64b43b90'
+            widget: text
+          - hint: 'Original text: Email Address, key: -2b7010d0'
+            label: Text
+            name: '-2b7010d0'
+            widget: string
+          - hint: 'Original text: See Details Inside, key: 50cf0767'
+            label: Text
+            name: 50cf0767
+            widget: string
+          - hint: >-
+              Original text: SIGN UP NOW FOR THE LATEST INFO AND UPDATES, key:
+              -718bc02a
+            label: Text
+            name: '-718bc02a'
+            widget: string
+          - hint: 'Original text: Booking, key: 6713a039'
+            label: Text
+            name: 6713a039
+            widget: string
+          - hint: 'Original text: NEW RELEASE, key: adfd47'
+            label: Text
+            name: adfd47
+            widget: string
+          - hint: 'Original text: Stream the latest music, key: 13d5d81b'
+            label: Text
+            name: 13d5d81b
+            widget: string
+          - hint: 'Original text: More Music, key: 1fed959a'
+            label: Text
+            name: 1fed959a
+            widget: string
+          - hint: 'Original text: BIO, key: 100e8'
+            label: Text
+            name: '100e8'
+            widget: string
+          - hint: 'Original text: Site Directory, key: 109fe0d4'
+            label: Text
+            name: 109fe0d4
+            widget: string
+          - hint: 'Original text: Music & Videos, key: 1a12506d'
+            label: Text
+            name: 1a12506d
+            widget: string
+          - hint: 'Original text: Events, key: 7c6ccd39'
+            label: Text
+            name: 7c6ccd39
+            widget: string
+          - hint: 'Original text: Shop, key: 274f16'
+            label: Text
+            name: 274f16
+            widget: string
+          - hint: 'Original text: News, key: 24fef3'
+            label: Text
+            name: 24fef3
+            widget: string
+          - hint: 'Original text: Photos, key: -718e8b5f'
+            label: Text
+            name: '-718e8b5f'
+            widget: string
+          - hint: 'Original text: Social, key: -6c12fc73'
+            label: Text
+            name: '-6c12fc73'
+            widget: string
+          - hint: 'Original text: Copyright © , key: 318803b0'
+            label: Text
+            name: 318803b0
+            widget: string
+          - hint: 'Original text: ., key: 2e'
+            label: Text
+            name: 2e
+            widget: string
+          - hint: 'Original text: All rights reserved., key: b272fbc'
+            label: Text
+            name: b272fbc
+            widget: string
+          - hint: 'Original text: Site Created By Reetune, key: 305d6e72'
+            label: Text
+            name: 305d6e72
+            widget: string
+          - hint: 'Original text: FEATURED RELEASE, key: 637d15f5'
+            label: Text
+            name: 637d15f5
+            widget: string
+          - hint: 'Original text: Listen to the latest release, key: -2e956bb7'
+            label: Text
+            name: '-2e956bb7'
+            widget: string
+          - hint: 'Original text: PLAY, key: 258334'
+            label: Text
+            name: '258334'
+            widget: string
+          - hint: 'Original text: Latest Releases, key: 5e31cdc5'
+            label: Text
+            name: 5e31cdc5
+            widget: string
+          - hint: 'Original text: Albums, key: 750b3c04'
+            label: Text
+            name: 750b3c04
+            widget: string
+          - hint: 'Original text: Singles, key: -1fef62f5'
+            label: Text
+            name: '-1fef62f5'
+            widget: string
+          - hint: 'Original text: Videos, key: -67489888'
+            label: Text
+            name: '-67489888'
+            widget: string
+          - hint: >-
+              Original text: This is a sample event. On active sites the event
+              flyer will take people directly to the venue location or ticketing
+              associated with the event., key: -6f9e390b
+            label: Text
+            name: '-6f9e390b'
+            widget: text
+          - hint: 'Original text: < BACK, key: 6844b24b'
+            label: Text
+            name: 6844b24b
+            widget: string
+          - hint: 'Original text: BACK, key: 1efce7'
+            label: Text
+            name: 1efce7
+            widget: string
+          - hint: 'Original text: You May Also Like:, key: -6526061a'
+            label: Text
+            name: '-6526061a'
+            widget: string
+          - hint: 'Original text: Shop Item, key: -97d7203'
+            label: Text
+            name: '-97d7203'
+            widget: string
+          - hint: 'Original text: <Back, key: 36cfb43'
+            label: Text
+            name: 36cfb43
+            widget: string
+          - hint: 'Original text: Details, key: -3fee75de'
+            label: Text
+            name: '-3fee75de'
+            widget: string
+          - hint: 'Original text: Close, key: 3e2edd8'
+            label: Text
+            name: 3e2edd8
+            widget: string
+          - hint: 'Original text: Ticketing & More, key: -43d5aa7'
+            label: Text
+            name: '-43d5aa7'
+            widget: string
+          - hint: 'Original text: VIEW UPDATE, key: 24180ea4'
+            label: Text
+            name: 24180ea4
+            widget: string
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: /, key: 2f'
+            label: Link
+            name: 2f
+            widget: string
+          - hint: 'Original link: /content/, key: 16bfbc05'
+            label: Link
+            name: 16bfbc05
+            widget: string
+          - hint: 'Original link: /events/, key: -3fb480d9'
+            label: Link
+            name: '-3fb480d9'
+            widget: string
+          - hint: 'Original link: /shop/, key: 56b9492a'
+            label: Link
+            name: 56b9492a
+            widget: string
+          - hint: 'Original link: /news/, key: 567194ed'
+            label: Link
+            name: 567194ed
+            widget: string
+          - hint: 'Original link: /photos/, key: -11243b41'
+            label: Link
+            name: '-11243b41'
+            widget: string
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: 'Original link: http://www.reetune.com, key: 3fdfbef4'
+            label: Link
+            name: 3fdfbef4
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: i2d0ef7b4
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-7e4fb29b'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 76986ca3
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-7bd9ad5d'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 35f6b3ed
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 5b2f31e3
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: a7e308e
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 703756ef
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+publish_mode: editorial_workflow
